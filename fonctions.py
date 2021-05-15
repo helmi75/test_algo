@@ -297,9 +297,9 @@ def crypto_a_vendre(exchange, minutes, market ):
     for name_crypto in market :  
         name_crypto_low = name_crypto.lower()            
         df_hystoric_order[name_crypto_low]= pd.DataFrame.from_dict(exchange.fetchMyTrades(name_crypto, since = int(x)))
-        st.write(df_hystoric_order[name_crypto_low])
+       
         index_dernier_ordre = df_hystoric_order[name_crypto_low].index.max() 
-        st.write(df_hystoric_order[name_crypto_low].loc[index_dernier_ordre])
+       
         liste_df.append(df_hystoric_order[name_crypto_low].loc[index_dernier_ordre])
         
         '''
@@ -319,8 +319,8 @@ def crypto_a_vendre(exchange, minutes, market ):
       
     
     df_log = pd.DataFrame(liste_df).set_index('symbol').iloc[:,:5]
-    print(df_log)
-    print('la crypot à vendre est ',df_log[df_log['side']=='buy'].index[0])
+    st.write(df_log)
+    st.write('la crypot à vendre est ',df_log[df_log['side']=='buy'].index[0])
     crypto_a_vendre = df_log[df_log['side']=='buy'].index[0]
     return crypto_a_vendre
 
