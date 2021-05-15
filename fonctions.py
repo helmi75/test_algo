@@ -297,7 +297,7 @@ def crypto_a_vendre(exchange, minutes, market ):
         name_crypto_low = name_crypto.lower()            
         df_hystoric_order[name_crypto_low]= pd.DataFrame.from_dict(exchange.fetchMyTrades(name_crypto, since = int(x)))
         index_dernier_ordre = df_hystoric_order[name_crypto_low].index.max() 
-        liste_df.append(df_hystoric_order[name_crypto_low].loc[index_dernier_ordre][['timestamp ','datetime','symbol','side','price','amount','cost']])
+        liste_df.append(df_hystoric_order[name_crypto_low].iloc[index_dernier_ordre][['timestamp ','datetime','symbol','side','price','amount','cost']])
     
     df_log = pd.DataFrame(liste_df).set_index('symbol').iloc[:,:5]
     print(df_log)
