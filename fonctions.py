@@ -5,6 +5,7 @@ from datetime import timedelta
 import numpy as np 
 import pandas as pd
 import time as tm
+import streamlit as st
 
 
 def generation_test(k,name_crypto,timestamp):
