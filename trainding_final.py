@@ -89,7 +89,7 @@ if bouton_run:
         k=k+1
         liste_principale.append([datetime.now(), nom_crypto_achat, nom_crypto_vente])
         st.write('crypto à vendre ',nom_crypto_vente)
-         st.write('crypto à acheter',nom_crypto_achat)
+        st.write('crypto à acheter',nom_crypto_achat)
         st.write(tableau_var)
         st.write(pd.DataFrame(liste_principale, columns=['temps','crypto vente','crypto achat']))
 
