@@ -71,7 +71,7 @@ if bouton_run:
             crypto[x] = crypto[x].merge(variation(crypto[x]),on ='timestamp',how='left')
             crypto[x]['coef_multi_'+x[:3]]=coef_multi(crypto[x])
             crypto[x]  = fonction_cumul(crypto[x],x)
-            st.write(crypto[x])
+            
 
         df_liste_var =  fonction_tableau_var(crypto)   
         tableau_var = meilleur_varaition(df_liste_var) 
