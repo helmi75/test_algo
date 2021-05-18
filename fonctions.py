@@ -262,7 +262,7 @@ def  algo_achat_vente(exchange , nom_crypto_vente, nom_crypto_achat):
             dic = exchange.fetchTicker(var2)
             dic['last']
             
-            buy = exchange.create_market_buy_order (var2 ,montant_USDT/ dic['last'])
+            buy = exchange.create_market_buy_order (var2 ,(montant_USDT*pourcentage)/ dic['last'])
             return  buy   
         
         #achat        
@@ -272,8 +272,8 @@ def  algo_achat_vente(exchange , nom_crypto_vente, nom_crypto_achat):
                 print('crypto achetée ' )
                 break
             except :
-                acheter = acheter(exchange ,nom_crypto_achat, balence['total'],0.065)
                 print('EXECUTION AVEC EXEPTION')
+                acheter = acheter(exchange ,nom_crypto_achat, balence['total'],0.065)                
                 break
         
     
