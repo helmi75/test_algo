@@ -256,7 +256,7 @@ def  algo_achat_vente(exchange , nom_crypto_vente, nom_crypto_achat):
         
         tm.sleep(5)   
         
-        def acheter(exchange ,var2, balence_total):
+        def acheter(exchange ,var2, balence_total, pourcentage):
             montant_USDT = float(exchange.fetch_balance().get('USDT').get('free'))
             
             dic = exchange.fetchTicker(var2)
