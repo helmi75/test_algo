@@ -265,8 +265,16 @@ def  algo_achat_vente(exchange , nom_crypto_vente, nom_crypto_achat):
             buy = exchange.create_market_buy_order (var2 ,montant_USDT/ dic['last'])
             return  buy   
         
-        #achat
-        acheter = acheter(exchange ,nom_crypto_achat, balence['total'])
+        #achat        
+        while True :
+            try :
+                acheter = acheter(exchange ,nom_crypto_achat, balence['total'],1)
+                print('crypto achetée ' )
+                break
+            except :
+                acheter = acheter(exchange ,nom_crypto_achat, balence['total'],0.065)
+                print('EXECUTION AVEC EXEPTION')
+                break
         
     
 
@@ -301,18 +309,7 @@ def crypto_a_vendre(exchange, minutes, market ):
         index_dernier_ordre = df_hystoric_order[name_crypto_low].index.max() 
        
         liste_df.append(df_hystoric_order[name_crypto_low].loc[index_dernier_ordre])
-        
-        '''
-        # columns to keep
-        filtered_columns = ['text', 'agreeCount', 'disagreeCount', 'id', 'user.firstName', 'user.lastName', 'user.gender', 'user.id']
-        tips_filtered = tips_df.loc[:, filtered_columns]
-        # display tips
-        tips_filtered 
-        
-        
-        tips_filtered = tips_df.reindex(columns = filtered_columns).
-        
-        '''
+ 
       
       
       
