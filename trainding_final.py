@@ -45,7 +45,7 @@ bouton_run = st.button("run")
 if bouton_run:
     while True:
 
-        pr:int("première iteration  : ",start_time)   
+        print("première iteration  : ",start_time)   
         print("horaire now",datetime.now())
         print ("iteration numéto : ", k)
 
