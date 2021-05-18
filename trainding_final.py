@@ -82,7 +82,7 @@ if bouton_run:
         st.write(pd.DataFrame(liste_principale, columns=['temps','crypto achat','crypto vente']))
 
 
-        tm.sleep(5*60)
+        tm.sleep(60)
 
     
 
