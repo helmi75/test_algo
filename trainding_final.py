@@ -20,7 +20,7 @@ import time as tm
 
  
 crypto ={}
-market=['ETH/USDT','BTC/USDT','UNI/USDT','BNB/USDT','ADA/USDT','KSM/USDT']
+market=['ETH/USDT','BTC/USDT','UNI/USDT']
 apiKey = st.text_input("Enter Apikey", type="password")
 secret = st.text_input("Enter a Secretkey", type="password")
 
@@ -71,7 +71,7 @@ if bouton_run:
             crypto[x] = crypto[x].merge(variation(crypto[x]),on ='timestamp',how='left')
             crypto[x]['coef_multi_'+x[:3]]=coef_multi(crypto[x])
             crypto[x]  = fonction_cumul(crypto[x],x)
-
+            st.write(crypto[x])
 
         df_liste_var =  fonction_tableau_var(crypto)   
         tableau_var = meilleur_varaition(df_liste_var) 
