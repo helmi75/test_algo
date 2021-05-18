@@ -9,7 +9,6 @@ from datetime import datetime
 from time import time 
 from datetime import timedelta
 import plotly.express as px
-import streamlit as st
 import plotly.graph_objects as go
 import base64
 import ccxt
@@ -21,13 +20,13 @@ import time as tm
  
 crypto ={}
 market=['ETH/USDT','BTC/USDT','UNI/USDT']
-apiKey = st.text_input("Enter Apikey", type="password")
-secret = st.text_input("Enter a Secretkey", type="password")
+apiKey = '7C9o9B0agRvuQkB8To0zqygf8cPIslFxXazbIMDFW6oFrVDRvC6OemFR60qU8n2n'
+secret = 'dpaQJ2TYHmdPkM5cCVtwOl7aAcJuZPIyOkAmkDCwdvDFo7VHqFTczY0LxYKLuow5'
 
 
 
-dth= st.selectbox('delta_hour',['1m', '5m','15m', '1h','4h','6h','8h','12h','1d'], index = 5)
-i_iteration = st.number_input('intervale d\'itération (min) ', 1,value= 5)
+dth= '15m'
+i_iteration = 2
 
 delta_hour = dth
 
@@ -37,7 +36,7 @@ exchange = ccxt.binance({
     'secret': secret,
     'enableRateLimit': True
     })
-st.write("wech bien ou quoi ? ")
+print( 'mimi')
 
 # initialisation temps 
 
@@ -47,18 +46,15 @@ liste_principale=[]
 liste_achat=[]
 liste_vente=[]
 temps=[]
+dpaQJ2TYHmdPkM5cCVtwOl7aAcJuZPIyOkAmkDCwdvDFo7VHqFTczY0LxYKLuow5
 
-bouton_run = st.button("run")
-if bouton_run:
-    while True:
+while True:
 
         print("première iteration  : ",start_time)   
         print("horaire now",datetime.now())
         print ("iteration numéto : ", k)
 
-        st.write("première iteration  : ",start_time) 
-        st.write("horaire now", datetime.now())
-        st.write("iteration numéto : ", k)
+       
 
 
         for elm in market :
@@ -71,7 +67,7 @@ if bouton_run:
             crypto[x] = crypto[x].merge(variation(crypto[x]),on ='timestamp',how='left')
             crypto[x]['coef_multi_'+x[:3]]=coef_multi(crypto[x])
             crypto[x]  = fonction_cumul(crypto[x],x)
-            st.write(crypto[x])
+           print(crypto[x])
 
         df_liste_var =  fonction_tableau_var(crypto)   
         tableau_var = meilleur_varaition(df_liste_var) 
@@ -88,14 +84,14 @@ if bouton_run:
 
         k=k+1
         liste_principale.append([datetime.now(), nom_crypto_achat, nom_crypto_vente])
-        st.write(tableau_var)
-        st.write(pd.DataFrame(liste_principale, columns=['temps','crypto vente','crypto achat']))
+        print(tableau_var)
+        print(pd.DataFrame(liste_principale, columns=['temps','crypto vente','crypto achat']))
         
         if nom_crypto_achat ==  nom_crypto_vente:
             st.write('On reste sur la même crypto')
         else:
-            st.write('crypto à vendre ',nom_crypto_vente)
-            st.write('crypto à acheter',nom_crypto_achat)
+           print('crypto à vendre ',nom_crypto_vente)
+           print('crypto à acheter',nom_crypto_achat)
        
 
 
