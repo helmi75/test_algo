@@ -25,6 +25,8 @@ apiKey = st.text_input("Enter Apikey", type="password")
 secret = st.text_input("Enter a Secretkey", type="password")
 
 delta_hour = '1m'
+st.selectbox('delta_hour',['1m', '5m', '1h','4h','6h','8h','12h','1d'], index = 5)
+
 exchange = ccxt.binance({
     'apiKey': apiKey,
     'secret': secret,
@@ -72,14 +74,17 @@ if bouton_run:
         tableau_var['coef_multi'] = tableau_var['algo'].cumprod()
         nom_crypto_achat =  nom_crypto_achat_vente(tableau_var)
         nom_crypto_vente= crypto_a_vendre(exchange,2, market ) 
+        
+        algo_achat_vente(exchange, nom_crypto_vente, nom_crypto_achat)
+        
+        print('la crypot à vendre est ',nom_crypto_vente)
         print('la crypot à acheter est ',nom_crypto_achat)
 
-        algo_achat_vente(exchange, nom_crypto_vente, nom_crypto_achat)
 
         k=k+1
         liste_principale.append([datetime.now(), nom_crypto_achat, nom_crypto_vente])
         st.write(tableau_var)
-        st.write(pd.DataFrame(liste_principale, columns=['temps','crypto achat','crypto vente']))
+        st.write(pd.DataFrame(liste_principale, columns=['temps','crypto vente','crypto achat']))
 
 
         tm.sleep(60)
