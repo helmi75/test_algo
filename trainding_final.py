@@ -26,7 +26,7 @@ secret = st.text_input("Enter a Secretkey", type="password")
 
 
 
-dth= st.selectbox('delta_hour',['1m', '5m', '1h','4h','6h','8h','12h','1d'], index = 5)
+dth= st.selectbox('delta_hour',['1m', '5m','15m', '1h','4h','6h','8h','12h','1d'], index = 5)
 i_iteration = st.number_input('intervale d\'itération (min) ', 1,value= 5)
 
 delta_hour = dth
