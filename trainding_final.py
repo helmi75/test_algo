@@ -20,9 +20,9 @@ import time as tm
 
  
 crypto ={}
-market=['ETH/USDT','BTC/USDT','UNI/USDT','BNB/USDT','ADA/USDT']
+market=['ETH/USDT','BTC/USDT','UNI/USDT','BNB/USDT','ADA/USDT','KSM/USDT']
 
-delta_hour = '15m'
+delta_hour = '1m'
 exchange = ccxt.binance({
     'apiKey': '7C9o9B0agRvuQkB8To0zqygf8cPIslFxXazbIMDFW6oFrVDRvC6OemFR60qU8n2n',
     'secret': 'dpaQJ2TYHmdPkM5cCVtwOl7aAcJuZPIyOkAmkDCwdvDFo7VHqFTczY0LxYKLuow5',
@@ -69,7 +69,7 @@ while True:
     tableau_var['algo'] = algo(tableau_var)
     tableau_var['coef_multi'] = tableau_var['algo'].cumprod()
     nom_crypto_achat =  nom_crypto_achat_vente(tableau_var)
-    nom_crypto_vente= crypto_a_vendre(exchange,5, market ) 
+    nom_crypto_vente= crypto_a_vendre(exchange,2, market ) 
     print('la crypot à acheter est ',nom_crypto_achat)
     
     algo_achat_vente(exchange, nom_crypto_vente, nom_crypto_achat)
@@ -80,7 +80,7 @@ while True:
     st.write(pd.DataFrame(liste_principale, columns=['temps','crypto achat','crypto vente']))
     
     
-    tm.sleep(15*60)
+    tm.sleep(5*60)
       
     
 
