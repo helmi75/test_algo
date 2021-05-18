@@ -25,9 +25,12 @@ apiKey = st.text_input("Enter Apikey", type="password")
 secret = st.text_input("Enter a Secretkey", type="password")
 
 
-delta_hour = '1m'
-st.selectbox('delta_hour',['1m', '5m', '1h','4h','6h','8h','12h','1d'], index = 5)
-st.number_input('intervale d\'itération (min) ', 1,value= 5)
+
+dth= st.selectbox('delta_hour',['1m', '5m', '1h','4h','6h','8h','12h','1d'], index = 5)
+i_iteration = st.number_input('intervale d\'itération (min) ', 1,value= 5)
+
+delta_hour = dth
+
 
 exchange = ccxt.binance({
     'apiKey': apiKey,
@@ -89,7 +92,7 @@ if bouton_run:
         st.write(pd.DataFrame(liste_principale, columns=['temps','crypto vente','crypto achat']))
 
 
-        tm.sleep(60*)
+        tm.sleep(60*i_iteration)
 
     
 
