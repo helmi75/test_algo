@@ -317,7 +317,7 @@ def crypto_a_vendre(exchange, minutes, market ):
     
     df_log = pd.DataFrame(liste_df).set_index('symbol')
     st.write(df_log)
-    st.write('la crypot à vendre est ',df_log[df_log['side']=='buy'].index[0])
+    
     crypto_a_vendre = df_log[df_log['side']=='buy'].index[0]
     return crypto_a_vendre
 
