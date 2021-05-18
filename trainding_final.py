@@ -91,7 +91,7 @@ if bouton_run:
         st.write(tableau_var)
         st.write(pd.DataFrame(liste_principale, columns=['temps','crypto vente','crypto achat']))
         
-        if crypto à vendre ==  crypto à acheter :
+        if nom_crypto_achat ==  nom_crypto_vente:
             st.write('On reste sur la même crypto')
         else:
             st.write('crypto à vendre ',nom_crypto_vente)
