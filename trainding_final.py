@@ -72,7 +72,7 @@ while True:
         df_liste_var =  fonction_tableau_var(crypto)   
         tableau_var = meilleur_varaition(df_liste_var) 
         tableau_var['algo'] = algo(tableau_var)
-        tableau_var['coef_multi'] = (tableau_var['algo'].cumprod()*100)-100
+        tableau_var['coef_multi'] = tableau_var['algo'].cumprod()
         nom_crypto_achat =  nom_crypto_achat_vente(tableau_var)
         nom_crypto_vente= crypto_a_vendre(exchange,2, market ) 
         
