@@ -7,7 +7,6 @@ import pandas as pd
 import time as tm
 
 
-
 def generation_test(k,name_crypto,timestamp):
   import random
   numeros = range(0,100000)
@@ -227,6 +226,15 @@ def nom_crypto_achat_vente(tableau_var ):
             name_cryptos ='DOGE/USDT'
         elif name_cryptos == 'LIN/USDT':
              name_cryptos = 'LINK/USDT'
+        elif name_cryptos == 'AAV/USDT':
+             name_cryptos = 'AAVE/USDT'
+        elif name_cryptos == 'MAT/USDT':
+             name_cryptos = 'MATIC/USDT'
+        elif name_cryptos == 'LUN/USDT':
+             name_cryptos = 'LUNA/USDT'
+        elif name_cryptos == 'THE/USDT':
+             name_cryptos = 'THETA/USDT'
+	 
         else :
             pass        
         return name_cryptos
@@ -254,7 +262,7 @@ def  algo_achat_vente(exchange , nom_crypto_vente, nom_crypto_achat):
         sell = vente (exchange,  nom_crypto_vente , balence['total'])
         
         
-        tm.sleep(5)   
+        tm.sleep(15)   
         
         def acheter(exchange ,var2, balence_total, pourcentage):
             montant_USDT = float(exchange.fetch_balance().get('USDT').get('free'))
@@ -273,7 +281,7 @@ def  algo_achat_vente(exchange , nom_crypto_vente, nom_crypto_achat):
                 break
             except :
                 print('EXECUTION AVEC EXEPTION')
-                acheter = acheter(exchange ,nom_crypto_achat, balence['total'],0.065)                
+                acheter = acheter(exchange ,nom_crypto_achat, balence['total'],0.97)                
                 break
         
     
@@ -298,25 +306,25 @@ def sleep_time(sec):
         
 def crypto_a_vendre(exchange, minutes, market ):
     
-    x = (datetime.now()- timedelta(days = minutes)).timestamp()*1000
+    x = (datetime.now()- timedelta(days = 30)).timestamp()*1000
     df_hystoric_order={}
     liste_df =[]
+    tm.sleep(5)
     liste_name_crypto=[]
-    for name_crypto in market :  
-        name_crypto_low = name_crypto.lower()            
-        df_hystoric_order[name_crypto_low]= pd.DataFrame.from_dict(exchange.fetchMyTrades(name_crypto, since = int(x)))
-       
-        index_dernier_ordre = df_hystoric_order[name_crypto_low].index.max() 
-       
-        liste_df.append(df_hystoric_order[name_crypto_low].loc[index_dernier_ordre])
+
+    for name_crypto in market :
+      	name_crypto_low = name_crypto.lower()
+      	df_hystoric_order[name_crypto_low]= pd.DataFrame.from_dict(exchange.fetchMyTrades(name_crypto, since = int(x)))
+      	index_dernier_ordre = df_hystoric_order[name_crypto_low].index.max()
+      	liste_df.append(df_hystoric_order[name_crypto_low].loc[index_dernier_ordre])
  
       
       
       
       
-    
+    pd.set_option('display.max_columns', None)
     df_log = pd.DataFrame(liste_df).set_index('symbol')
-    st.write(df_log)
+    print(df_log[['datetime','side','cost']])
     
     crypto_a_vendre = df_log[df_log['side']=='buy'].index[0]
     return crypto_a_vendre

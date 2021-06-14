@@ -19,14 +19,14 @@ import time as tm
 
  
 crypto ={}
-market=['ETH/USDT','BTC/USDT','UNI/USDT']
-apiKey = '7C9o9B0agRvuQkB8To0zqygf8cPIslFxXazbIMDFW6oFrVDRvC6OemFR60qU8n2n'
-secret = 'dpaQJ2TYHmdPkM5cCVtwOl7aAcJuZPIyOkAmkDCwdvDFo7VHqFTczY0LxYKLuow5'
+market=['AAVE/USDT','LUNA/USDT','MATIC/USDT','THETA/USDT','VET/USDT','SOL/USDT','TRX/USDT','EOS/USDT','BCH/USDT','LTC/USDT','LINK/USDT','XLM/USDT','ETH/USDT','BTC/USDT','UNI/USDT','ADA/USDT','DOT/USDT','KSM/USDT','BNB/USDT','XRP/USDT','DOGE/USDT']
+apiKey = '2CNNMG6X4XEJhXzEGVa3hVPztX83jpMldyUlks4c3XWNJz4Gn8fZKnRDZYtELO0M'
+secret = 'vG4AJ9HifbF0X83cOn5qICUU4xB8Xs5eEpz0Y3Wp6qns7rq0KfMwc0qNmeRNpI5X'
 
 
 
-dth= '15m'
-i_iteration = 2
+dth= '1h'
+i_iteration = 15
 
 delta_hour = dth
 
@@ -46,7 +46,7 @@ liste_principale=[]
 liste_achat=[]
 liste_vente=[]
 temps=[]
-dpaQJ2TYHmdPkM5cCVtwOl7aAcJuZPIyOkAmkDCwdvDFo7VHqFTczY0LxYKLuow5
+
 
 while True:
 
@@ -67,7 +67,7 @@ while True:
             crypto[x] = crypto[x].merge(variation(crypto[x]),on ='timestamp',how='left')
             crypto[x]['coef_multi_'+x[:3]]=coef_multi(crypto[x])
             crypto[x]  = fonction_cumul(crypto[x],x)
-           print(crypto[x])
+            print(crypto[x])
 
         df_liste_var =  fonction_tableau_var(crypto)   
         tableau_var = meilleur_varaition(df_liste_var) 
@@ -88,7 +88,7 @@ while True:
         print(pd.DataFrame(liste_principale, columns=['temps','crypto vente','crypto achat']))
         
         if nom_crypto_achat ==  nom_crypto_vente:
-            st.write('On reste sur la même crypto')
+           print('On reste sur la même crypto')
         else:
            print('crypto à vendre ',nom_crypto_vente)
            print('crypto à acheter',nom_crypto_achat)
